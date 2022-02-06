@@ -2,6 +2,13 @@ const express = require("express");
 
 const { ApolloServer, gql } = require("apollo-server-express");
 
+require("dotenv").config();
+const db = require("./db");
+
+// .env 에 명시된 포트 또는 4000 에서 서버 실행
+const port = process.env.PORT || 4000;
+const DB_HOST = process.env.DB_HOST;
+
 let notes = [
   {
     id: "1",
@@ -32,17 +39,19 @@ const typeDefs = gql`
     notes: [Note!]!
     note(id: ID!): Note!
   }
+
+  type Mutation {
+    newNote(content: String!): Note
+  }
 `;
 
 const resolvers = {
   Query: {
     hello: () => "Hello There",
     notes: () => notes,
-    note: (parent, args) => notes.find(note => note.id === args.id),
+    note: (parent, args) => notes.find((note) => note.id === args.id),
   },
 };
-
-const port = process.env.PORT || 4000;
 
 // 이전과 동일한 아폴로 3.0 이상 버전의 서버 시작
 async function startApolloServer(typeDefs, resolvers) {
@@ -51,6 +60,8 @@ async function startApolloServer(typeDefs, resolvers) {
   await server.start();
 
   const app = express();
+
+  db.connect(DB_HOST);
 
   // GraphQL 미들웨어 적용하고 경로를 /api 로 설정
   server.applyMiddleware({ app, path: "/api" });
