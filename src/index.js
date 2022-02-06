@@ -51,6 +51,18 @@ const resolvers = {
     notes: () => notes,
     note: (parent, args) => notes.find((note) => note.id === args.id),
   },
+  Mutation: {
+    newNote: (parent, args) => {
+      let noteValue = {
+        id: String(notes.length + 1),
+        content: args.content,
+        author: "Rexian",
+      };
+
+      notes.push(noteValue);
+      return noteValue;
+    },
+  },
 };
 
 // 이전과 동일한 아폴로 3.0 이상 버전의 서버 시작
