@@ -51,6 +51,18 @@ const resolvers = {
     notes: () => notes,
     note: (parent, args) => notes.find((note) => note.id === args.id),
   },
+  Mutation: {
+    newNote: (parent, args) => {
+      let noteValue = {
+        id: String(notes.length + 1),
+        content: args.content,
+        author: "Rexian",
+      };
+
+      notes.push(noteValue);
+      return noteValue;
+    },
+  },
 };
 
 // 이전과 동일한 아폴로 3.0 이상 버전의 서버 시작
@@ -61,7 +73,7 @@ async function startApolloServer(typeDefs, resolvers) {
 
   const app = express();
 
-  db.connect(DB_HOST);
+  //   db.connect(DB_HOST);
 
   // GraphQL 미들웨어 적용하고 경로를 /api 로 설정
   server.applyMiddleware({ app, path: "/api" });
