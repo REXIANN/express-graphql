@@ -1,5 +1,7 @@
 # Express with GraphQL
 
+아폴로 서버 익스프레스 애플리케이션
+
 ## installation
 
 ### expressjs
@@ -171,3 +173,10 @@ const resolvers = {
 * `args`: 사용자가 쿼리와 함께 전달한 인수(전달인자) 이다.
 * `context`: 서버 애플리케이션이 리졸버 함수에 전달하는 정보로, 현재 사용자나 데이터베이스의 정보와 같은 것이 포함된다.
 * `info`: 쿼리 자체에 대한 정보이다.
+
+## mongodb
+mongodb 를 사용하기 위해 mongoose 설치
+
+```bash
+$ npm install mongoose
+```
