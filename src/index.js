@@ -73,7 +73,7 @@ async function startApolloServer(typeDefs, resolvers) {
 
   const app = express();
 
-  db.connect(DB_HOST);
+  //   db.connect(DB_HOST);
 
   // GraphQL 미들웨어 적용하고 경로를 /api 로 설정
   server.applyMiddleware({ app, path: "/api" });
