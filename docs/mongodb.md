@@ -13,3 +13,18 @@ $ brew install mongodb-community@4.4
 # launch
 $ brew services start mongodb-community
 ```
+
+## execute
+몽고디비의 경우 주소는 `mongodb://localhost:{PORT}/{dbname}` 를 사용한다. 
+포트는 기본적으로 27017 을 사용하며 dbname 은 없다면 자동으로 생성된다.
+
+```zsh
+$ mongo
+
+$ use <db-name> # db 선택
+```
+
+## 도큐먼트와 컬렉션
+몽고디비는 컬렉션 이라는 개념을 제공한다. 컬렉션은 비슷한 도큐먼트끼리 그룹화 하는 것이다. 
+컬렉션은 자바스크립트 객체로 치면 최상위 객체에 해당하고 도큐먼트는 그 안에 종속된 개별 객체가 된다.
+
