@@ -14,7 +14,7 @@ module.exports = {
     }
   },
   updateNote: async (parent, { id, content }, { models }) => {
-    return await models.Note.findOneAndUpdate(
+    return models.Note.findOneAndUpdate(
       {
         _id: id,
       },
